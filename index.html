@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Byakugan Princess: Hinata Hyuga Interactive Tribute</title>
+
+    <!-- Load custom configuration first -->
+    <script src="firebase-config.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600&family=Cinzel:wght400;700&display=swap" rel="stylesheet">
+    
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50 border-b border-purple-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-purple-800 brand-font">Byakugan Princess</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <button onclick="scrollToSection('hero')" class="text-purple-600 hover:text-purple-900 px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</button>
+                    <button onclick="scrollToSection('analytics')" class="text-purple-600 hover:text-purple-900 px-3 py-2 rounded-md text-sm font-medium transition-colors">Combat Data</button>
+                    <button onclick="scrollToSection('timeline')" class="text-purple-600 hover:text-purple-900 px-3 py-2 rounded-md text-sm font-medium transition-colors">Chronicle</button>
+                    <button onclick="scrollToSection('shrine')" class="bg-purple-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-purple-700 transition-colors shadow-md">Enter Shrine</button>
+                </div>
+                <!-- Mobile menu button stub -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="text-purple-600 hover:text-purple-900 focus:outline-none">
+                        <span class="text-2xl">☰</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-purple-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <button onclick="scrollToSection('hero')" class="block w-full text-left text-purple-600 hover:bg-purple-50 px-3 py-2 rounded-md text-base font-medium">Home</button>
+                <button onclick="scrollToSection('analytics')" class="block w-full text-left text-purple-600 hover:bg-purple-50 px-3 py-2 rounded-md text-base font-medium">Combat Data</button>
+                <button onclick="scrollToSection('timeline')" class="block w-full text-left text-purple-600 hover:bg-purple-50 px-3 py-2 rounded-md text-base font-medium">Chronicle</button>
+                <button onclick="scrollToSection('shrine')" class="block w-full text-left text-purple-600 hover:bg-purple-50 px-3 py-2 rounded-md text-base font-medium">Shrine</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-16">
+
+        <!-- Hero Section -->
+        <section id="hero" class="relative bg-gradient-to-b from-purple-50 to-white overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 flex flex-col-reverse lg:flex-row items-center">
+                <div class="w-full lg:w-1/2 text-center lg:text-left z-10">
+                    <h1 class="text-4xl tracking-tight font-extrabold text-purple-900 sm:text-5xl md:text-6xl mb-6 brand-font">
+                        <span class="block">The White Eye</span>
+                        <span class="block text-purple-600">That Sees The Truth</span>
+                    </h1>
+                    <p class="mt-3 text-base text-gray-600 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                        Explore the life, growth, and gentle strength of Hinata Hyuga. From a shy heiress to a master of the Gentle Fist and the Lion Queen of Konoha.
+                    </p>
+                    <div class="mt-8 sm:mt-10 sm:flex sm:justify-center lg:justify-start gap-4">
+                        <button onclick="scrollToSection('analytics')" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 md:py-4 md:text-lg transition-transform hover:-translate-y-1 shadow-lg">
+                            Analyze Abilities
+                        </button>
+                        <button onclick="scrollToSection('shrine')" class="mt-3 w-full flex items-center justify-center px-8 py-3 border border-purple-200 text-base font-medium rounded-md text-purple-700 bg-purple-50 hover:bg-purple-100 md:py-4 md:text-lg md:mt-0 transition-transform hover:-translate-y-1">
+                            Offer Tribute
+                        </button>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2 flex justify-center lg:justify-end mb-10 lg:mb-0 relative">
+                    <!-- Decorative Circle mimicking Moon/Byakugan -->
+                    <div class="absolute w-64 h-64 md:w-96 md:h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-pulse"></div>
+                    <div class="absolute w-60 h-60 md:w-80 md:h-80 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 top-0 right-10"></div>
+                    
+                    <!-- Hero Image Placeholder -->
+                    <img src="Hinata_Uzumaki.png" onerror="this.onerror=null; this.src='https://placehold.co/400x500/A78BFA/FFFFFF?text=Hinata';" class="rounded-xl shadow-2xl ring-4 ring-purple-300 object-cover w-64 h-80 md:w-96 md:h-[480px] relative z-10" alt="Hinata Hyuga - Adult Shinobi">
+                </div>
+            </div>
+        </section>
+
+        <!-- Analytics Section -->
+        <section id="analytics" class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-extrabold text-purple-900 brand-font">Shinobi Data Analysis</h2>
+                    <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+                        A quantitative breakdown of Hinata's capabilities derived from official Databooks. Observe the trajectory of her growth from the Chunin Exams to the Fourth Great Ninja War.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                    <!-- Radar Chart: Databook Stats -->
+                    <div class="bg-purple-50 rounded-2xl p-6 shadow-sm border border-purple-100">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-xl font-bold text-purple-800">Attribute Growth (Databook 1 vs 3)</h3>
+                            <select id="stat-toggle" class="bg-white border border-purple-300 text-purple-700 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block p-2.5">
+                                <option value="all">Compare All</option>
+                                <option value="genin">Genin Era</option>
+                                <option value="shippuden">Shippuden Era</option>
+                            </select>
+                        </div>
+                        <!-- Chart Container -->
+                        <div class="chart-container">
+                            <canvas id="radarChart"></canvas>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-4 text-center italic">
+                            *Values based on official databook parameters: Ninjutsu, Taijutsu, Genjutsu, Int, Str, Spd, Sta, Seals.
+                        </p>
+                    </div>
+
+                    <!-- Right Column: Jutsu & Traits -->
+                    <div class="space-y-8">
+                        <!-- Jutsu Distribution -->
+                        <div class="bg-white rounded-2xl p-6 shadow-lg border-t-4 border-purple-500">
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Jutsu Repertoire Analysis</h3>
+                            <p class="text-gray-600 mb-4 text-sm">
+                                Hinata specializes in <span class="font-bold text-purple-600">Taijutsu</span> and chakra control. Unlike standard shinobi who rely on elemental ninjutsu, her arsenal is focused on the precision of the Gentle Fist.
+                            </p>
+                            <div class="chart-container" style="height: 250px;">
+                                <canvas id="jutsuBarChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Confidence Metric -->
+                        <div class="bg-gradient-to-r from-purple-600 to-indigo-700 rounded-2xl p-6 text-white shadow-lg">
+                            <h3 class="text-xl font-bold mb-2">The Resolve Metric</h3>
+                            <div class="flex items-end space-x-2 mb-2">
+                                <span class="text-4xl font-bold" id="resolve-score">∞</span>
+                                <span class="text-purple-200 mb-1">/ 100</span>
+                            </div>
+                            <p class="text-purple-100 text-sm mb-4">
+                                "I will never go back on my word... because that is my ninja way too!"
+                            </p>
+                            <!-- Simple HTML visualization for progress -->
+                            <div class="w-full bg-purple-900 rounded-full h-2.5 dark:bg-gray-700">
+                                <div class="bg-purple-300 h-2.5 rounded-full" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section id="timeline" class="py-16 bg-purple-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-extrabold text-purple-900 brand-font">The Path of the Lioness</h2>
+                    <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+                        Explore key milestones in Hinata's journey. Click on an era to reveal detailed insights.
+                    </p>
+                </div>
+
+                <!-- Interactive Timeline Control -->
+                <div class="flex justify-center space-x-2 md:space-x-4 mb-10 overflow-x-auto pb-4">
+                    <button onclick="updateTimeline('childhood')" class="timeline-btn px-4 py-2 rounded-full bg-white border border-purple-200 text-purple-600 hover:bg-purple-100 focus:ring-2 focus:ring-purple-500 transition-all text-sm font-bold whitespace-nowrap">Heir of Hyuga</button>
+                    <button onclick="updateTimeline('chunin')" class="timeline-btn px-4 py-2 rounded-full bg-white border border-purple-200 text-purple-600 hover:bg-purple-100 focus:ring-2 focus:ring-purple-500 transition-all text-sm font-bold whitespace-nowrap">Chunin Exams</button>
+                    <button onclick="updateTimeline('shippuden')" class="timeline-btn px-4 py-2 rounded-full bg-white border border-purple-200 text-purple-600 hover:bg-purple-100 focus:ring-2 focus:ring-purple-500 transition-all text-sm font-bold whitespace-nowrap">Pain's Assault</button>
+                    <button onclick="updateTimeline('war')" class="timeline-btn px-4 py-2 rounded-full bg-white border border-purple-200 text-purple-600 hover:bg-purple-100 focus:ring-2 focus:ring-purple-500 transition-all text-sm font-bold whitespace-nowrap">The Last</button>
+                    <button onclick="updateTimeline('boruto')" class="timeline-btn px-4 py-2 rounded-full bg-white border border-purple-200 text-purple-600 hover:bg-purple-100 focus:ring-2 focus:ring-purple-500 transition-all text-sm font-bold whitespace-nowrap">Era of Boruto</button>
+                </div>
+
+                <!-- Dynamic Content Area -->
+                <div id="timeline-content" class="bg-white rounded-3xl shadow-xl overflow-hidden min-h-[400px] flex flex-col md:flex-row transition-all duration-500 relative">
+                     <div id="timeline-loading" class="loading-overlay">
+                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
+                     </div>
+                    <!-- Content populated by JS -->
+                </div>
+                
+                <!-- Supporting Images for Timeline -->
+                <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <img src="Hinata.webp" onerror="this.onerror=null; this.src='https://placehold.co/300x200';" class="rounded-lg shadow-md object-cover h-full w-full" alt="Genin Hinata during the Chunin Exams">
+                    <img src="J3Fshiken.webp" onerror="this.onerror=null; this.src='https://placehold.co/300x200';" class="rounded-lg shadow-md object-cover h-full w-full" alt="Hinata using Twin Lion Fists">
+                    <img src="E35rV58VEAALqv-.png" onerror="this.onerror=null; this.src='https://placehold.co/300x200';" class="rounded-lg shadow-md object-cover h-full w-full" alt="Hinata in her outfit from The Last movie">
+                    <img src="dcs458cytkra1.jpg" onerror="this.onerror=null; this.src='https://placehold.co/300x200';" class="rounded-lg shadow-md object-cover h-full w-full" alt="Hinata as a mother in the Boruto era">
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Shrine Section (The "Worship" Aspect) -->
+        <section id="shrine" class="py-16 bg-gradient-to-b from-indigo-900 to-purple-900 text-white relative overflow-hidden">
+            <!-- Background decorative elements -->
+            <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10">
+                <div class="absolute top-10 left-10 text-9xl">❀</div>
+                <div class="absolute bottom-10 right-10 text-9xl">❀</div>
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[20rem]">♔</div>
+            </div>
+
+            <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
+                <h2 class="text-4xl font-extrabold text-purple-100 mb-6 brand-font">The Lavender Shrine</h2>
+                <p class="text-purple-200 text-lg mb-10">
+                    Dedicate your energy to the Princess. Every click sends positive chakra to a global, persistent counter.
+                </p>
+
+                <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 shadow-2xl max-w-lg mx-auto relative">
+                    <div id="shrine-loading" class="loading-overlay rounded-3xl">
+                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-300"></div>
+                    </div>
+                    
+                    <!-- Counter Display -->
+                    <div class="mb-8">
+                        <span class="block text-purple-300 text-sm uppercase tracking-widest mb-2">Total Chakra Offered (Global)</span>
+                        <div class="text-6xl font-mono font-bold text-white tabular-nums" id="worship-counter">--</div>
+                    </div>
+
+                    <!-- Interactive Button -->
+                    <button id="worship-btn" class="pulse-btn group relative w-32 h-32 mx-auto bg-gradient-to-br from-purple-400 to-indigo-600 rounded-full flex items-center justify-center transform transition-transform active:scale-90 shadow-lg border-4 border-purple-200 disabled:opacity-50" disabled>
+                        <span class="text-4xl group-hover:scale-110 transition-transform">💜</span>
+                    </button>
+                    
+                    <p class="mt-6 text-sm text-purple-200 italic" id="worship-text">
+                        Waiting for connection...
+                    </p>
+
+                    <!-- Quote Generator -->
+                    <div class="mt-8 pt-8 border-t border-white/10">
+                        <p class="text-lg font-medium text-white min-h-[80px] flex items-center justify-center" id="quote-display">
+                            "I used to always cry and give up... I made many wrong turns..."
+                        </p>
+                        <button onclick="newQuote()" class="mt-4 text-xs text-purple-300 hover:text-white underline decoration-dotted">
+                            Recall another memory
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-gray-50 border-t border-gray-200 py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+                <div class="text-2xl font-bold text-purple-800 brand-font mb-4">Byakugan Princess</div>
+                <p class="text-gray-500 text-sm text-center">
+                    A tribute application designed for analysis and appreciation.<br>
+                    Data sources: Official Databooks, Manga Canon.<br>
+                    Disclaimer: This is a fan-made project. Naruto is property of Masashi Kishimoto/Shueisha.
+                </p>
+                <p id="user-id-display" class="mt-4 text-xs text-gray-400">User ID: N/A</p>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Load main JavaScript file as a module -->
+    <script type="module" src="main.js"></script>
+</body>
+</html>

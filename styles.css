@@ -1,0 +1,88 @@
+/* Custom Styles and Animations */
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: #FAF5FF; /* Soft Lavender Tint */
+    color: #4C1D95; /* Deep Purple */
+    overflow-x: hidden;
+}
+
+h1, h2, h3, .brand-font {
+    font-family: 'Cinzel', serif;
+}
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 350px;
+    max-height: 400px;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #F3E8FF;
+}
+::-webkit-scrollbar-thumb {
+    background: #A855F7;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #7E22CE;
+}
+
+/* Interactive Elements */
+.interactive-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.interactive-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(147, 51, 234, 0.15);
+}
+
+.active-tab {
+    border-bottom: 2px solid #7E22CE;
+    color: #7E22CE;
+    font-weight: 600;
+}
+
+/* Gentle Pulse Animation for Worship Button */
+@keyframes gentle-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(168, 85, 247, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0); }
+}
+.pulse-btn {
+    animation: gentle-pulse 2s infinite;
+}
+
+/* Toggle Switch */
+.toggle-checkbox:checked {
+    right: 0;
+    border-color: #68D391;
+}
+.toggle-checkbox:checked + .toggle-label {
+    background-color: #68D391;
+}
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+}
