@@ -12,20 +12,20 @@ FEATURES
 - Modular Architecture with clean file separation.
 
 PROJECT STRUCTURE
-index.html – Main page structure.
-styles.css – Custom CSS.
-firebase-config.js – Firebase connection info.
-main.js – Core logic, charts, timeline, Firebase integration.
+- index.html – Main page structure.
+- styles.css – Custom CSS.
+- firebase-config.js – Firebase connection info.
+- main.js – Core logic, charts, timeline, Firebase integration.
 
 SETUP & RUNNING LOCALLY
-Requires Node.js.
-Run locally with:
-    npx serve
+- Requires Node.js.
+- Run locally with:
+    - npx serve
 
 DEPLOYMENT (Firebase Hosting)
-firebase login
-firebase init
-firebase deploy
+- firebase login
+- firebase init
+- firebase deploy
 
 FIRESTORE SECURITY RULES
 - rules_version = '2';
